@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   has_one :friendship, :dependent => :destroy
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, :family, :given, :prefix
-  validates_presence_of :fullname
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, :invite_token
+  validates_presence_of :fullname, if: :registered?
 
   before_validation :downcase_email
   after_create { |user| user.create_friendship }
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   def self.dummy_create(new_email)
     new_password = ActiveSupport::SecureRandom::hex(4)
     new_invite_token = ActiveSupport::Base64::urlsafe_encode64(new_email+ActiveSupport::SecureRandom::hex(4))
-    User.create(email: new_email, password: new_password, password_confirmation: new_password, invite_token: new_invite_token)
+    User.create!(email: new_email, password: new_password, password_confirmation: new_password, invite_token: new_invite_token)
   end
 
   def registered?

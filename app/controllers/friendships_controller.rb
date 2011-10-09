@@ -5,6 +5,8 @@ class FriendshipsController < ApplicationController
     @user.add_friend(@friend)
     if @friend.registered?
       redirect_to root_path+@user.to_param, notice: "You've successfully exchanged contact"
+    else
+      redirect_to root_path+@user.to_param, notice: "You've shared contact with #{@friend.email}. As soon as they login, you will receive their card"
     end
   end
 
