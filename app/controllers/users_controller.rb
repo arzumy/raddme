@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def get_user
-    @user = User.find_by_id(params[:id])
+    @user = User.find(params[:id])
     raise ActiveRecord::RecordNotFound unless @user
   end
 end

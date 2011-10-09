@@ -55,7 +55,11 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation
-
+  %div
+    = f.label :url
+    %i= "(this will be displayed as #{public_user_url('YOUR-URL')})"
+    %br/
+    = f.text_field :url
   %div= f.submit "Update"
 
 = link_to "Back", public_user_path(resource)

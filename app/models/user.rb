@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :url, :use => :slugged
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,15 +8,12 @@ class User < ActiveRecord::Base
   has_one :friendship, :dependent => :destroy
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, :invite_token
+  #attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, :invite_token
   validates_presence_of :fullname, if: :registered?
+
 
   before_validation :downcase_email
   after_create { |user| user.create_friendship }
-
-  def to_param
-    self.id.to_s
-  end
 
   def friends
     User.where(:id => friend_ids)
