@@ -4,7 +4,7 @@ Radd::Application.routes.draw do
   resources :friendships, only: [:create]
   root :to => "home#index"
 
-  match '*id' => 'users#show'
+  match '*id' => 'users#show', as: :public_user
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
