@@ -7,6 +7,7 @@ gem 'rails', '3.1.1'
 
 gem 'pg'
 gem 'vpim'
+gem 'devise'
 
 
 # Gems used only for assets and not required
