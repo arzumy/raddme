@@ -26,10 +26,16 @@ ActiveRecord::Schema.define(:version => 20111009073730) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "family"
-    t.string   "given"
-    t.string   "prefix"
     t.string   "fullname"
+    t.string   "street"
+    t.string   "locality"
+    t.string   "country"
+    t.string   "postalcode"
+    t.string   "phone_mobile"
+    t.string   "phone_work"
+    t.string   "phone_fax"
+    t.string   "title"
+    t.string   "organization"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
