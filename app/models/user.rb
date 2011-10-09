@@ -46,6 +46,40 @@ class User < ActiveRecord::Base
     self.update_without_password(params)
   end
 
+  def vcard
+    Vpim::Vcard::Maker.make2 do |maker|
+      maker.add_name do |name|
+        name.fullname = self.fullname
+      end
+      maker.add_email(self.email) do |mail|
+        mail.location = 'work'
+        mail.preferred = 'yes'
+      end
+      maker.title = self.title if self.title
+      maker.org = self.organization if self.organization
+      maker.add_addr do |addr|
+        addr.preferred = true
+        addr.location = 'work'
+        addr.street = self.street if self.street
+        addr.locality = self.locality if self.locality
+        addr.postalcode = self.postalcode if self.postalcode
+        addr.country = self.country if self.country
+      end if [self.street, self.locality, self.postalcode, self.country].any?
+      maker.add_tel(self.phone_mobile) do |t|
+        t.location = 'mobile'
+        t.preferred = true
+      end if self.phone_mobile
+      maker.add_tel(self.phone_work) do |t|
+        t.location = 'work'
+        t.preferred = false
+      end if self.phone_work
+      maker.add_tel(self.phone_fax) do |t|
+        t.location = 'work'
+        t.capability = 'fax'
+      end if self.phone_fax
+    end
+  end
+
   protected
   def downcase_email
     self.email.downcase! if self.email

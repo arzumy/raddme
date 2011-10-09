@@ -12,6 +12,7 @@ class UserMailer < ActionMailer::Base
   def setup_mail(user, friend)
     @user = user
     @friend = friend
+    attachments["user.vcf"] = user.vcard.to_s
     mail(:to => friend.email, :subject => "Here's #{@user.fullname} details on Radd.me")
   end
 end
