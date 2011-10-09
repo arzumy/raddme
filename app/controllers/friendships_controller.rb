@@ -4,6 +4,8 @@ class FriendshipsController < ApplicationController
   def create
     @user.add_friend(@friend)
     if @friend.registered?
+      UserMailer.exchanged(@user, @friend).deliver
+      UserMailer.exchanged(@friend, @user).deliver
       redirect_to public_user_path(@user), notice: "You've successfully exchanged contact"
     else
       UserMailer.exchanged_unregistered(@user, @friend).deliver
