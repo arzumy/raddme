@@ -2,6 +2,7 @@ Radd::Application.routes.draw do
   devise_for :users
   
   resources :friendships, only: [:create]
+  match 'exchange/:token' => 'home#exchange', as: :exchange
   root :to => "home#index"
 
   match '*id' => 'users#show', as: :public_user

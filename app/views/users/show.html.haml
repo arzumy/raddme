@@ -9,4 +9,8 @@
     = f.email_field :email, value: nil
   %div= f.submit "Exchange!"
 
-%p= link_to 'edit', edit_user_registration_path if user_signed_in?
+- if user_signed_in?
+  %p
+    = link_to 'edit', edit_user_registration_path
+    |
+    = link_to 'logout', destroy_user_session_path, method: :delete
