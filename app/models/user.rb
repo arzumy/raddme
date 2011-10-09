@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   def vcard
     Vpim::Vcard::Maker.make2 do |maker|
       maker.add_name do |name|
-        name.fullname = self.fullname
+        name.fullname = self.fullname if self.fullname
       end
       maker.add_email(self.email) do |mail|
         mail.location = 'work'
