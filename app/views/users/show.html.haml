@@ -8,3 +8,5 @@
     %br/
     = f.email_field :email, value: nil
   %div= f.submit "Exchange!"
+
+%p= link_to 'edit', edit_user_registration_path if user_signed_in?

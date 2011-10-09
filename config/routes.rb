@@ -2,8 +2,8 @@ Radd::Application.routes.draw do
   devise_for :users
   
   resources :friendships, only: [:create]
-
   root :to => "home#index"
+
   match '*id' => 'users#show'
 
   # The priority is based upon order of creation:
