@@ -151,6 +151,13 @@ form {
 	margin-top: 10px;
 }
 
+.exchange form {
+	margin-top: 0;
+}
+
+.exchange input[type=email] {
+	margin-top: 0;
+}
  
 input[type=text], input[type=password], input[type=email] {
 	border: 2px solid #CDC8BE;

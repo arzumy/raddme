@@ -1,13 +1,14 @@
 .name
   = @user.fullname
   %span= @user.email
-= form_for :user, url: friendships_path do |f|
-  = f.hidden_field :id
-  %div
-    / = f.label :email
-    %br/
-    = f.email_field :email, value: nil, :placeholder => "Enter Email here..."
-  %div= f.submit "Exchange!", :class=> "button"
+.exchange
+  = form_for :user, url: friendships_path do |f|
+    = f.hidden_field :id
+    %div
+      / = f.label :email
+      %br/
+      = f.email_field :email, value: nil, :placeholder => "Enter Email here..."
+    %div= f.submit "Exchange!", :class=> "button"
 
 - if user_signed_in?
   .meta
