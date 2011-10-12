@@ -17,7 +17,10 @@ class UsersController < ApplicationController
   end
 
   def get_user
-    @user = User.find(params[:id])
-    raise ActiveRecord::RecordNotFound unless @user
+    begin
+      @user = User.find(params[:id])
+    rescue
+      redirect_to root_path, alert: "Sorry, can't find that user"
+    end
   end
 end
