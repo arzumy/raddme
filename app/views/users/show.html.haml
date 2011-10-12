@@ -1,17 +1,17 @@
 .name
   = @user.fullname
-
-/ %p= @user.email
+  %span= @user.email
 = form_for :user, url: friendships_path do |f|
   = f.hidden_field :id
   %div
     / = f.label :email
     %br/
-    = f.email_field :email, value: nil
+    = f.email_field :email, value: nil, :placeholder => "Enter Email here..."
   %div= f.submit "Exchange!", :class=> "button"
 
 - if user_signed_in?
-  %p
-    = link_to 'edit', edit_user_registration_path
-    |
-    = link_to 'logout', destroy_user_session_path, method: :delete
+  .meta
+    %p
+      = link_to 'edit', edit_user_registration_path
+      |
+      = link_to 'logout', destroy_user_session_path, method: :delete
