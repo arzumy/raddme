@@ -4,3 +4,4 @@ log/*.log
 tmp/
 .idea/*
 config/database.yml
+spec/fixtures/*.yml
