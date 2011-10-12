@@ -1,7 +1,233 @@
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
- *= require_tree . 
-*/
+/* @override http://localhost:3000/assets/application.css?body=1 */
+
+/* #CSS Reset
+================================================== */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* #CSS3 Buttons
+================================================== */
+
+.button
+{
+        display: inline-block;
+        white-space: nowrap;
+        background-color: #ccc;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ccc));
+        background-image: -webkit-linear-gradient(top, #eee, #ccc);
+        background-image: -moz-linear-gradient(top, #eee, #ccc);
+        background-image: -ms-linear-gradient(top, #eee, #ccc);
+        background-image: -o-linear-gradient(top, #eee, #ccc);
+        background-image: linear-gradient(top, #eee, #ccc);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+        border: 1px solid #777;
+        padding: 0 1.5em;
+        margin: 0.5em;
+        font: bold 1em/2em Arial, Helvetica !important;
+        text-decoration: none;
+        color: #333;
+        text-shadow: 0 1px 0 rgba(255,255,255,.8);
+        -moz-border-radius: .2em;
+        -webkit-border-radius: .2em;
+        border-radius: .2em;
+        -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+}
+
+.button:hover
+{
+        background-color: #ddd;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ddd));
+        background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
+        background-image: -moz-linear-gradient(top, #fafafa, #ddd);
+        background-image: -ms-linear-gradient(top, #fafafa, #ddd);
+        background-image: -o-linear-gradient(top, #fafafa, #ddd);
+        background-image: linear-gradient(top, #fafafa, #ddd);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa', EndColorStr='#dddddd');
+}
+
+.button:active
+{
+        -moz-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        -webkit-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        position: relative;
+        top: 1px;
+}
+
+.button:focus
+{
+        outline: 0;
+        background: #fafafa;
+}    
+
+.button:before
+{
+        background: #ccc;
+        background: rgba(0,0,0,.1);
+        float: left;
+        width: 1em;
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0 1em 0 -1em;
+        padding: 0 .2em;
+        -moz-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        -webkit-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        -moz-border-radius: .15em 0 0 .15em;
+        -webkit-border-radius: .15em 0 0 .15em;
+        border-radius: .15em 0 0 .15em;
+        pointer-events: none;
+}
+
+/* #Styling Starts Here
+================================================== */
+
+body {
+  background: url(bg.png);
+  font-family: "Lucida Grande", "Verdana", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.wrapper {
+  width: 320px;
+  text-align: center;
+}
+
+a.logo {
+  background: url(logo.png) no-repeat;
+  display: block;
+  text-indent: -9999px;
+  width: 154px;
+  height: 86px;
+  margin: 0 auto;
+}
+
+form {
+	margin-left: 44px;
+	text-align: left;
+	margin-top: 10px;
+}
+
+ 
+input[type=text], input[type=password], input[type=email] {
+	border: 2px solid #CDC8BE;
+	font-size: 22px;
+	padding: 5px;
+	width: 220px;
+	clear: both;
+	margin-bottom: 15px;
+	margin-top: 5px;
+}
+
+input[type=checkbox] {
+	margin-bottom: 15px;
+	font-size: 16px;
+}
+
+h1 {
+	margin:  25px;
+	font-weight: bolder;
+	font-size: 20px;
+	margin-bottom: 20px;
+	color: #333333;
+}
+
+.name {
+	text-transform: uppercase;
+	font-family: "Lucida Grande", "Verdana", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	margin:  25px;
+	font-weight:  bolder;
+	font-size: 25px;
+	margin-bottom: 0px;
+	color: #333333;
+}
+
+.name span, .meta, .meta a{
+	font-family: Georgia, "Times New Roman", serif;
+	color: #B1ADA1;
+	font-weight: normal;
+	text-transform: none;
+	margin-top: 8px;
+	font-style: italic;
+	text-shadow: 1px 1px 0px #fff;
+}
+
+a {
+	font-family: Georgia, "Times New Roman", serif;
+	color: #B1ADA1;
+	font-weight: normal;
+	text-transform: none;
+	font-style: italic;
+	text-shadow: 1px 1px 0px #fff;
+	text-decoration: none;
+}
+
+.meta {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.meta a{
+	text-decoration: none;
+	font-style: normal;
+	border-bottom: 1px solid #fff;
+}
+
+.name span {
+	display: block;
+}
+
+.button {
+	text-transform: uppercase;
+	margin-left: 0;
+	font-size: 18px !important;
+}
+input.button {
+	text-transform: uppercase;
+	width: 234px;
+	font-size: 18px !important;
+	margin: 0;
+}
