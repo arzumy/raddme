@@ -1,3 +1,43 @@
+/* @override http://localhost:3000/assets/home.css?body=1 */
+
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  background: url(bg.png);
+  font-family: "Lucida Grande", "Verdana", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.wrapper {
+  width: 320px;
+  text-align: center;
+}
+
+.header
+  a.logo {
+    background: url(logo.png) no-repeat;
+    display: block;
+    text-indent: -9999px;
+    width: 154px;
+    height: 86px;
+    margin: 0 auto;
+  }
+ 
+ input#user_email {
+	border: 2px solid #CDC8BE;
+	font-size: 22px;
+	padding: 5px;
+	width: 220px;
+}
+
+.name {
+	text-transform: uppercase;
+	font-family: "Lucida Grande", "Verdana", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	margin:  25px;
+	font-weight:  bolder;
+	font-size: 25px;
+	margin-bottom: 10px;
+	color: #333333;
+}
+

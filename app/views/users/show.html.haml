@@ -1,13 +1,14 @@
-%h2= @user.fullname
+.name
+  = @user.fullname
 
-%p= @user.email
+/ %p= @user.email
 = form_for :user, url: friendships_path do |f|
   = f.hidden_field :id
   %div
-    = f.label :email
+    / = f.label :email
     %br/
     = f.email_field :email, value: nil
-  %div= f.submit "Exchange!"
+  %div= f.submit "Exchange!", :class=> "button"
 
 - if user_signed_in?
   %p
