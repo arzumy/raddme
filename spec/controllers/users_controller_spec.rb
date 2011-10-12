@@ -21,4 +21,19 @@ describe UsersController do
       end
     end
   end
+
+  describe "PUT update" do
+    before do
+      @user = users(:user00)
+    end
+
+    context 'user update details' do
+      it 'marks user as not new' do
+        sign_in @user
+        put :update, id: @user.to_param, user: {fullname: 'This is fullname', password: 'password', password_confirmation: 'password'}
+        response.should redirect_to public_user_path(@user)
+        @user.reload.registered?.should be_true
+      end
+    end
+  end
 end

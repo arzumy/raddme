@@ -4,7 +4,9 @@ FixtureBuilder.configure do |fbuilder|
 
   fbuilder.factory do
     # User
-    user01 = User.create!(fullname: 'User 01', email: 'user01@example.com', password: 'password', password: 'password')
+    user00 = User.create!(email: 'user00@example.com', password: 'password', password: 'password', invite_token: 'token')
+    user01 = User.create!(fullname: 'User 01', email: 'user01@example.com', password: 'password', password_confirmation: 'password')
+    name(:user00, user00)
     name(:user01, user01)
   end
 end
