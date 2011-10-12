@@ -1,5 +1,6 @@
 Radd::Application.routes.draw do
   devise_for :users
+  resources :users, only: [:edit, :update]
   
   resources :friendships, only: [:create]
   match 'exchange/:token' => 'home#exchange', as: :exchange

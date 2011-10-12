@@ -6,7 +6,6 @@ gem 'rails', '3.1.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'mysql2'
 gem 'vpim'
 gem 'devise'
 gem 'unicorn'
@@ -30,4 +29,8 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+end
+
+group :development do
+  gem 'mysql2'
 end

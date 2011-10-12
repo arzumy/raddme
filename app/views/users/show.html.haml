@@ -13,6 +13,6 @@
 - if user_signed_in?
   .meta
     %p
-      = link_to 'edit', edit_user_registration_path
+      = link_to 'edit', edit_user_registration_path if @user == current_user
       |
       = link_to 'logout', destroy_user_session_path, method: :delete

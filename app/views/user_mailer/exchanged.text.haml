@@ -1,16 +1,16 @@
-= "Hi #{@user.fullname}"
+= "Hi #{@friend.fullname}"
 = nil
 I just exchanged details with you:
 = nil
-= @friend.fullname
-- if @friend.title
-  = @friend.title
-- if @friend.organization
-  = @friend.organization
-= @friend.email
-- if @friend.phone_mobile
-  = @friend.phone_mobile
+= @user.fullname
+- if @user.title
+  = @user.title
+- if @user.organization
+  = @user.organization
+= @user.email
+- if @user.phone_mobile
+  = @user.phone_mobile
 = nil
 Regards,
-= @friend.fullname
-= public_user_url(@friend)
+= @user.fullname
+= public_user_url(@user)

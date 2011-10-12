@@ -33,6 +33,13 @@ class User < ActiveRecord::Base
     self.invite_token.nil?
   end
 
+  def register!
+    self.update_attribute(:invite_token, nil)
+    self.friends.each do |friend|
+      UserMailer.exchanged(self, friend).deliver
+    end
+  end
+
   def add_friend(friend)
     transaction do
       self.friendship.append(friend)
