@@ -23,6 +23,11 @@ end
 
 gem 'jquery-rails'
 
+group :development do
+  gem 'tap'
+  gem 'heroku'
+end
+
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
   gem 'mysql2'
