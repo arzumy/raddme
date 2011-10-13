@@ -69,4 +69,20 @@ describe User do
       end
     end
   end
+
+  describe "#register!" do
+
+    it "marks user as registered" do
+      user = users(:user00)
+      user.register!
+      user.registered?.should be_true
+    end
+
+    it "send emails" do
+      pending "not sure why deliveries always empty yet"
+      user = users(:user01)
+      user.register!
+      ActionMailer::Base.deliveries.last.to.should == [users(:user02).email]
+    end
+  end
 end
