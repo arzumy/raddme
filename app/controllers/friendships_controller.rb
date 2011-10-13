@@ -1,6 +1,7 @@
 class FriendshipsController < ApplicationController
   before_filter :get_user, only: [:create]
   before_filter :get_friend, only: [:create]
+  rescue_from ActiveRecord::RecordInvalid, with: :email_not_valid
   def create
     @user.add_friend(@friend)
     if @friend.registered?
@@ -23,5 +24,9 @@ class FriendshipsController < ApplicationController
     unless @friend
       @friend = User.dummy_create(params[:user][:email])
     end
+  end
+
+  def email_not_valid
+    redirect_to public_user_path(@user), alert: "Your email is invalid dude"
   end
 end
