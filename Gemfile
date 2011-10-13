@@ -31,4 +31,5 @@ group :test, :development do
   gem 'capybara'
   gem 'fixture_builder'
   gem 'spork', '~> 0.9.0.rc'
+  gem 'foreman'
 end
