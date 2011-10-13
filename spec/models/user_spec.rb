@@ -53,4 +53,20 @@ describe User do
       end
     end
   end
+
+  describe "#registered?" do
+    context "invite token is nil" do
+      it "returns true" do
+        user = users(:user01)
+        user.registered?.should be_true
+      end
+    end
+
+    context "invite token is not nil" do
+      it "returns false" do
+        user = users(:user00)
+        user.registered?.should_not be_true
+      end
+    end
+  end
 end
