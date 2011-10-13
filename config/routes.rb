@@ -3,7 +3,7 @@ Radd::Application.routes.draw do
   resources :users, only: [:edit, :update]
   
   resources :friendships, only: [:create]
-  match 'exchange/:token' => 'home#exchange', as: :exchange
+  match 'exchange/:token' => 'exchanges#show', as: :exchange
   root :to => "home#index"
 
   match '*id' => 'users#show', as: :public_user
