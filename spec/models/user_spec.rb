@@ -79,7 +79,6 @@ describe User do
     end
 
     it "send emails" do
-      pending "not sure why deliveries always empty yet"
       user = users(:user01)
       user.register!
       ActionMailer::Base.deliveries.last.to.should == [users(:user02).email]

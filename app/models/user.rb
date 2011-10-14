@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
   end
 
   def self.dummy_create(new_email)
-    new_password = ActiveSupport::SecureRandom::hex(4)
-    new_invite_token = ActiveSupport::Base64::urlsafe_encode64(new_email+ActiveSupport::SecureRandom::hex(4))
+    new_password = SecureRandom::hex(4)
+    new_invite_token = ActiveSupport::Base64::urlsafe_encode64(new_email+SecureRandom::hex(4))
     User.create!(email: new_email, password: new_password, password_confirmation: new_password, invite_token: new_invite_token)
   end
 
