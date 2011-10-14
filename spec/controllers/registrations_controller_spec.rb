@@ -27,4 +27,26 @@ describe RegistrationsController do
       end
     end
   end
+
+  describe 'GET edit' do
+    it 'displays edit form' do
+      user = users(:user01)
+      sign_in user
+      get :edit
+      response.should render_template(:edit)
+    end
+  end
+
+  describe 'POST update' do
+    context 'valid details' do
+      describe "edit fullname" do
+        it "changes user's fullname" do
+          user = users(:user01)
+          sign_in user
+          put :update, user: {fullname: 'new fullname'}
+          assigns(:user).fullname.should_not == user.fullname
+        end
+      end
+    end
+  end
 end
