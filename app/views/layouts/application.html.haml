@@ -14,6 +14,11 @@
     .wrapper
       .header
         = link_to "radd.me", root_path, :class=> "logo"
+      - %w[notice alert].each do |flasher|
+        - if flash[flasher.to_sym]
+          .alert-message{class: flasher}
+            %p= flash[flasher.to_sym]
+
       = yield
 
       .footer
