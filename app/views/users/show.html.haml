@@ -7,7 +7,7 @@
     %div
       / = f.label :email
       %br/
-      = f.email_field :email, value: nil, :placeholder => "Enter Email here..."
+      = f.email_field :email, value: nil, :placeholder => "add your email here"
     %div= f.submit "Exchange!", :class=> "button"
 
 - if user_signed_in?
