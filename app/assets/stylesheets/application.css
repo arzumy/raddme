@@ -145,6 +145,10 @@ a.logo {
   margin: 0 auto;
 }
 
+form i {
+	font-size: 12px;
+}
+
 form {
 	margin-left: 44px;
 	text-align: left;
@@ -159,7 +163,7 @@ form {
 	margin-top: 0;
 }
  
-input[type=text], input[type=password], input[type=email] {
+input[type=text], input[type=password], input[type=email], textarea {
 	border: 2px solid #CDC8BE;
 	font-size: 22px;
 	padding: 5px;

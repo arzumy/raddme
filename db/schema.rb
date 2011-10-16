@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111009191140) do
+ActiveRecord::Schema.define(:version => 20111016082504) do
 
   create_table "friendships", :force => true do |t|
     t.integer "user_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20111009191140) do
     t.string   "invite_token"
     t.string   "url"
     t.string   "slug"
+    t.text     "custom_message"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

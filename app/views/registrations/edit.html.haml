@@ -46,6 +46,11 @@
     %br/
     = f.text_field :phone_fax
   %div
+    = f.label :custom_message
+    %i (this message will be included in the email)
+    %br/
+    = f.text_area :custom_message, rows: 10
+  %div
     = f.label :password
     %i (leave blank if you don't want to change it)
     %br/
@@ -56,7 +61,7 @@
     = f.password_field :password_confirmation
   %div
     = f.label :url
-    %i= "(this will be displayed as #{public_user_url('YOUR-URL')})"
+    %i= "(this will be displayed as #{public_user_url('username')})"
     %br/
     = f.text_field :url
   %div= f.submit "Update", :class => "button"

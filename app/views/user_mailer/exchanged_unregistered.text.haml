@@ -4,10 +4,15 @@ It was nice to meet you, aren't you happy we didn't exchange cards now you can s
 My details are as follows:
 = nil
 = @user.fullname
-= @user.title if @user.title
-= @user.organization if @user.organization
+- if @user.title
+  = @user.title
+- if @user.organization
+  = @user.organization
 = @user.email
-= @user.phone_mobile if @user.phone_mobile
+- if @user.phone_mobile
+  = @user.phone_mobile
+= nil
+= raw @user.custom_message
 = nil
 = "Return the favor by signing up at #{exchange_url(@friend.invite_token)}"
 = nil
