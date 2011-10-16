@@ -238,3 +238,8 @@ input.button {
 	font-size: 18px !important;
 	margin: 0;
 }
+
+.footer {
+  padding-top: 20px;
+  font-size: 12px !important;
+}
