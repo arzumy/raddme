@@ -6,3 +6,4 @@ en:
     attributes:
       user:
         url: Username
+        phone_mobile: Mobile Number

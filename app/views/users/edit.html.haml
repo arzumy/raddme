@@ -1,18 +1,3 @@
 = form_for(current_user) do |f|
-  %div
-    = f.label :fullname
-    %br/
-    = f.text_field :fullname
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div= f.submit "Save"
+  = render partial: 'registrations/form', locals: {f: f}
+  %div= f.submit "Save", :class => "button"
