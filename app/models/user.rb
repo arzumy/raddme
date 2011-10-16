@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     self.update_without_password(params)
   end
 
+  def gravatar_url
+    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.downcase.strip)}?r=pg&d=mm"
+  end
+
   def vcard
     Vpim::Vcard::Maker.make2 do |maker|
       maker.add_name do |name|
@@ -60,6 +64,9 @@ class User < ActiveRecord::Base
       maker.add_email(self.email) do |mail|
         mail.location = 'work'
         mail.preferred = 'yes'
+      end
+      maker.add_photo do |photo|
+        photo.link = gravatar_url
       end
       maker.title = self.title if self.title
       maker.org = self.organization if self.organization

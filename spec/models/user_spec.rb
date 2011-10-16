@@ -111,4 +111,49 @@ describe User do
       ActionMailer::Base.deliveries.last.to.should == [users(:user02).email]
     end
   end
+
+  describe ".gravatar_url" do
+    describe "generates gravatar url" do
+      let(:user) {user = users(:user01)}
+
+      def email_md5
+        Digest::MD5.hexdigest('user01@example.com')
+      end
+
+      it "returns gravatar domain" do
+        user.gravatar_url.should match /gravatar\.com/
+      end
+
+      describe "returns md5 of trimmed, lowercased email" do
+        it "trims the email" do
+          u = user
+          u.email = ' user01@example.com '
+          u.gravatar_url.should match /#{email_md5}/
+        end
+
+        it 'lowercase the email' do
+          u = user
+          u.email = 'USER01@example.com'
+          u.gravatar_url.should match /#{email_md5}/
+        end
+      end
+
+      it "forces default mystery man avatar" do
+        user.gravatar_url.should match /d=mm/
+      end
+
+      it "rate as pg" do
+        user.gravatar_url.should match /r=pg/
+      end
+    end
+  end
+
+  describe "#vcard" do
+    let(:user) {users(:user01)}
+    it "includes photo" do
+      user.vcard.to_s.should match /PHOTO.*gravatar/
+    end
+
+    pending 'more spec for vcard'
+  end
 end
