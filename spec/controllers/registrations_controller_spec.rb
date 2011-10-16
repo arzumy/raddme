@@ -26,6 +26,15 @@ describe RegistrationsController do
         end
       end
     end
+
+    context "New user" do
+      describe 'valid user' do
+        it 'redirects to users#edit page' do
+          post :create, user: {fullname: 'User New', email: 'user-new@example.com', url: 'user-new', password: 'password', password_confirmation: 'password'}
+          response.should redirect_to edit_user_registration_path
+        end
+      end
+    end
   end
 
   describe 'GET edit' do
