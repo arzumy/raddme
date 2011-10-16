@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   end
 
   def gravatar_url
-    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.downcase.strip)}?r=pg&d=mm"
+    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.downcase.strip)}.png?r=pg&d=mm"
   end
 
   def vcard
@@ -66,7 +66,8 @@ class User < ActiveRecord::Base
         mail.preferred = 'yes'
       end
       maker.add_photo do |photo|
-        photo.link = gravatar_url
+        photo.image = open(gravatar_url).read
+        photo.type = 'png'
       end
       maker.title = self.title if self.title
       maker.org = self.organization if self.organization

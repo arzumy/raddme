@@ -142,8 +142,12 @@ describe User do
         user.gravatar_url.should match /d=mm/
       end
 
-      it "rate as pg" do
+      it "rates as pg" do
         user.gravatar_url.should match /r=pg/
+      end
+
+      it "type should be png " do
+        user.gravatar_url.should match /\.png/
       end
     end
   end
@@ -151,7 +155,7 @@ describe User do
   describe "#vcard" do
     let(:user) {users(:user01)}
     it "includes photo" do
-      user.vcard.to_s.should match /PHOTO.*gravatar/
+      user.vcard.to_s.should match /PHOTO/
     end
 
     pending 'more spec for vcard'
