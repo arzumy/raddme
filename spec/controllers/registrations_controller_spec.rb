@@ -20,7 +20,7 @@ describe RegistrationsController do
       describe "user properly registered" do
         it 'redirects to reset password page' do
           user = users(:user01)
-          post :create, user: {fullname: 'User 01', email: user.email, password: 'password', password_confirmation: 'password'}
+          post :create, user: {fullname: 'User 01', email: user.email, url: user.url, password: 'password', password_confirmation: 'password'}
           response.should redirect_to new_user_password_path
           flash[:notice].should match /Seems like you've registered before/
         end

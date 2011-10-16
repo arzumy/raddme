@@ -2,16 +2,43 @@ require 'spec_helper'
 
 describe User do
   context "validation" do
-    describe "fullname" do
-      it "invalid without fullname" do
-        user = User.new(fullname: nil, email: 'user02@example.com', password: 'password', password_confirmation: 'password')
-        user.should have(1).error_on(:fullname)
+    context "proper registration" do
+      describe "fullname" do
+        it "invalid without fullname" do
+          user = User.new(fullname: nil, email: 'user02@example.com', password: 'password', password_confirmation: 'password', url: 'user02')
+          user.should have(1).error_on(:fullname)
+        end
+      end
+
+      describe "url" do
+        it "invalid without url" do
+          user = User.new(fullname: 'fullname', email: 'user02@example.com', password: 'password', password_confirmation: 'password', url: nil)
+          user.should have(1).error_on(:url)
+        end
+      end
+    end
+
+    context "user created from user#show page" do
+      describe "fullname" do
+        it "valid without fullname" do
+          user = User.new(fullname: nil, email: 'user02@example.com', password: 'password', password_confirmation: 'password', url: 'user02', invite_token: 'token')
+          user.should be_valid
+          user.should have(0).error_on(:fullname)
+        end
+      end
+
+      describe "url" do
+        it "valid without url" do
+          user = User.new(fullname: 'fullname', email: 'user02@example.com', password: 'password', password_confirmation: 'password', url: nil, invite_token: 'token')
+          user.should be_valid
+          user.should have(0).error_on(:url)
+        end
       end
     end
 
     describe "email" do
       it "downcase email" do
-        user = User.create!(fullname: "downcase", email: 'DOWNCASE@example.com', password: 'password', password_confirmation: 'password')
+        user = User.create!(fullname: "downcase", email: 'DOWNCASE@example.com', url: 'downcase', password: 'password', password_confirmation: 'password')
         user.email.should == 'downcase@example.com'
       end
     end

@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, :invite_token
-  validates_presence_of :fullname, if: :registered?
-
+  validates_presence_of :fullname, :url, if: :registered?
 
   before_validation :downcase_email
   after_create { |user| user.create_friendship }
