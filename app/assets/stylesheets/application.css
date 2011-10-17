@@ -289,3 +289,7 @@ input.button {
 #error_explanation li {
  margin-top: 10px;
 }
+
+#offline {
+  display: none;
+}
