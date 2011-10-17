@@ -7,3 +7,6 @@ en:
       user:
         url: Username
         phone_mobile: Mobile Number
+        phone_work: Office Number
+        phone_fax: Fax Number
+        locality: City
