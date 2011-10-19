@@ -248,7 +248,7 @@ input.button {
   font-size: 12px !important;
 }
 
-.alert-message, #error_explanation {
+.alert-message, #error_explanation, #offline {
     background-color: #EEDC94;
     background-image: -moz-linear-gradient(center top , #FCEEC1, #EEDC94);
     background-repeat: repeat-x;
@@ -280,7 +280,18 @@ input.button {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
-.alert-message p, #error_explanation {
+#offline {
+  background-color: #EEDC94;
+  background-image: -moz-linear-gradient(center top , #FCEEC1, #EEDC94);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+
+  margin-bottom: 0;
+  display: none;
+}
+
+.alert-message p, #error_explanation, #offline p {
   margin-bottom: 0;
   color: #FFFFFF;
   font-size: 12px !important;
@@ -288,8 +299,4 @@ input.button {
 
 #error_explanation li {
  margin-top: 10px;
-}
-
-#offline {
-  display: none;
 }
