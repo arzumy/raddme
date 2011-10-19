@@ -80,16 +80,16 @@ class User < ActiveRecord::Base
         addr.country = self.country if self.country
       end if [self.street, self.locality, self.postalcode, self.country].any?
       maker.add_tel(self.phone_mobile) do |t|
-        t.location = 'mobile'
+        t.location = 'CELL'
         t.preferred = true
       end unless self.phone_mobile.blank?
       maker.add_tel(self.phone_work) do |t|
-        t.location = 'work'
+        t.location = 'WORK'
         t.preferred = false
       end unless self.phone_work.blank?
       maker.add_tel(self.phone_fax) do |t|
-        t.location = 'work'
-        t.capability = 'fax'
+        t.location = 'WORK'
+        t.capability = 'FAX'
       end unless self.phone_fax.blank?
     end
   end
