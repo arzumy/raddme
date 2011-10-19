@@ -154,8 +154,16 @@ describe User do
 
   describe "#vcard" do
     let(:user) {users(:user01)}
+
     it "includes photo" do
       user.vcard.to_s.should match /PHOTO/
+    end
+
+    context 'organization account' do
+      it "doesn't not include first name" do
+        company = users(:company01)
+        company.vcard.to_s.should match /N:;;;;/
+      end
     end
 
     pending 'more spec for vcard'

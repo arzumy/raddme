@@ -11,6 +11,10 @@ FixtureBuilder.configure do |fbuilder|
     name(:user01, user01)
     name(:user02, user02)
 
+    # Company
+    company01 = User.create!(fullname: 'Company 01', email: 'companyr01@example.com', url: 'company01', password: 'password', password_confirmation: 'password', is_company: true)
+    name(:company01, company01)
+
     # Friendship
     user01.friendship.update_attributes(friend_ids: [user02.id].to_json)
     user02.friendship.update_attributes(friend_ids: [user01.id].to_json)

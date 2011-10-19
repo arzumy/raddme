@@ -59,18 +59,22 @@ class User < ActiveRecord::Base
     Vpim::Vcard::Maker.make2 do |maker|
       maker.add_name do |name|
         name.fullname = self.fullname if self.fullname
-        name.given = self.fullname.split.first if self.fullname
+        name.given = self.is_company? ? '' : self.fullname.split.first if self.fullname
       end
+
       maker.add_email(self.email) do |mail|
         mail.location = 'work'
         mail.preferred = 'yes'
       end
+
       maker.add_photo do |photo|
         photo.image = open(gravatar_url).read
         photo.type = 'png'
       end
+
       maker.title = self.title if self.title
       maker.org = self.organization if self.organization
+
       maker.add_addr do |addr|
         addr.preferred = true
         addr.location = 'work'
@@ -79,14 +83,17 @@ class User < ActiveRecord::Base
         addr.postalcode = self.postalcode if self.postalcode
         addr.country = self.country if self.country
       end if [self.street, self.locality, self.postalcode, self.country].any?
+
       maker.add_tel(self.phone_mobile) do |t|
         t.location = 'CELL'
         t.preferred = true
       end unless self.phone_mobile.blank?
+
       maker.add_tel(self.phone_work) do |t|
         t.location = 'WORK'
         t.preferred = false
       end unless self.phone_work.blank?
+
       maker.add_tel(self.phone_fax) do |t|
         t.location = 'WORK'
         t.capability = 'FAX'
