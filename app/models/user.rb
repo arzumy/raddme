@@ -52,11 +52,11 @@ class User < ActiveRecord::Base
   end
 
   def gravatar_url
-    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.downcase.strip)}.png?r=pg&d=mm"
+    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email.downcase.strip)}.png?r=pg&d=#{self.is_company? ? '404' : 'mm'}"
   end
 
   def vcard
-    Vpim::Vcard::Maker.make2 do |maker|
+    vcf = Vpim::Vcard::Maker.make2 do |maker|
       maker.add_name do |name|
         name.fullname = self.fullname if self.fullname
         name.given = self.is_company? ? '' : self.fullname.split.first if self.fullname
@@ -67,9 +67,12 @@ class User < ActiveRecord::Base
         mail.preferred = 'yes'
       end
 
-      maker.add_photo do |photo|
-        photo.image = open(gravatar_url).read
-        photo.type = 'png'
+      begin
+        maker.add_photo do |photo|
+          photo.image = open(gravatar_url).read
+          photo.type = 'png'
+        end
+      rescue
       end
 
       maker.title = self.title if self.title
@@ -99,6 +102,8 @@ class User < ActiveRecord::Base
         t.capability = 'FAX'
       end unless self.phone_fax.blank?
     end
+
+    vcf << Vpim::DirectoryInfo::Field.create( 'X-ABShowAs', 'COMPANY')
   end
 
   protected

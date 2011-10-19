@@ -2,7 +2,7 @@
 = nil
 I just exchanged details with you:
 = nil
-= @user.fullname
+= @user.fullname unless @user.is_company?
 - if @user.title
   = @user.title
 - if @user.organization

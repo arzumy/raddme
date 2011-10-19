@@ -142,6 +142,10 @@ describe User do
         user.gravatar_url.should match /d=mm/
       end
 
+      it "forces 404 if company avatar" do
+        users(:company01).gravatar_url.should match /d=404/
+      end
+
       it "rates as pg" do
         user.gravatar_url.should match /r=pg/
       end
@@ -163,6 +167,11 @@ describe User do
       it "doesn't not include first name" do
         company = users(:company01)
         company.vcard.to_s.should match /N:;;;;/
+      end
+
+      it "includes X-ABShowAs:COMPANY" do
+        company = users(:company01)
+        company.vcard.to_s.should match /X-ABShowAs:COMPANY/
       end
     end
 

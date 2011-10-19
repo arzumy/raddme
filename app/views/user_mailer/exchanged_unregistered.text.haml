@@ -3,7 +3,7 @@ Hi,
 It was nice to meet you, aren't you happy we didn't exchange cards now you can search for my contacts so easily
 My details are as follows:
 = nil
-= @user.fullname
+= @user.fullname unless @user.is_company?
 - if @user.title
   = @user.title
 - if @user.organization
