@@ -1,6 +1,17 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+sendDataToServer = ($form) ->
+  i = 0
+  dataString = ''
+  while i <= localStorage.length - 1
+    dataString = localStorage.key(i)
+    if dataString
+      $.post $form.attr('action'), localStorage.getItem(dataString)
+      localStorage.removeItem dataString
+    else
+      i++
+
 saveDataLocally = (serializedData) ->
   if typeof (localStorage) is "undefined"
     alert "Your browser does not support offline mode"
@@ -24,18 +35,7 @@ $(document).ready ->
     $form = $(".exchange > form")
     $form.unbind()
     if localStorage.length > 0
-      i = 0
-      dataString = ''
-      while i <= localStorage.length - 1
-        console.log("data")
-        dataString = localStorage.key(i)
-        if dataString
-          console.log("before post")
-          $.post $form.attr('action'), localStorage.getItem(dataString)
-          localStorage.removeItem dataString
-        else
-          console.log("before post")
-          i++
-          
+      sendDataToServer($form)
+  
   $("a.close").click ->
     $(this).parent().fadeOut()
