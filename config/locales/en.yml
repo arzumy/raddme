@@ -5,6 +5,7 @@ en:
   activerecord:
     attributes:
       user:
+        fullname: First Name
         url: Username
         phone_mobile: Mobile Number
         phone_work: Office Number
