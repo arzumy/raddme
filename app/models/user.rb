@@ -103,7 +103,8 @@ class User < ActiveRecord::Base
       end unless self.phone_fax.blank?
     end
 
-    vcf << Vpim::DirectoryInfo::Field.create( 'X-ABShowAs', 'COMPANY')
+    vcf << Vpim::DirectoryInfo::Field.create( 'X-ABShowAs', 'COMPANY') if is_company?
+    vcf
   end
 
   def self.find_by_email(mail)
