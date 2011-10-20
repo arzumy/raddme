@@ -89,12 +89,11 @@ class User < ActiveRecord::Base
 
       maker.add_tel(self.phone_mobile) do |t|
         t.location = 'CELL'
-        t.preferred = true
       end unless self.phone_mobile.blank?
 
       maker.add_tel(self.phone_work) do |t|
         t.location = 'WORK'
-        t.preferred = false
+        t.capability = 'VOICE'
       end unless self.phone_work.blank?
 
       maker.add_tel(self.phone_fax) do |t|

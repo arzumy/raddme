@@ -159,6 +159,10 @@ describe User do
   describe "#vcard" do
     let(:user) {users(:user01)}
 
+    it 'downgrade to 2.1' do
+      user.vcard.to_s.should match /VERSION:2\.1/
+    end
+
     it "includes photo" do
       user.vcard.to_s.should match /PHOTO/
     end
