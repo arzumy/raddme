@@ -7,3 +7,6 @@ $(document).ready ->
 
   $(window).bind "online", ->
     $("#offline").hide()
+
+  $("a.close").click ->
+    $(this).parent().fadeOut()

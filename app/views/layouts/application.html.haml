@@ -17,6 +17,7 @@
       - %w[notice alert].each do |flasher|
         - if flash[flasher.to_sym]
           .alert-message{class: flasher}
+            = link_to 'x', '#', class: 'close'
             %p= flash[flasher.to_sym]
 
       = yield
