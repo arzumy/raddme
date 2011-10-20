@@ -106,6 +106,10 @@ class User < ActiveRecord::Base
     vcf << Vpim::DirectoryInfo::Field.create( 'X-ABShowAs', 'COMPANY')
   end
 
+  def self.find_by_email(mail)
+    super(mail.downcase)
+  end
+
   protected
   def downcase_email
     self.email.downcase! if self.email

@@ -177,4 +177,11 @@ describe User do
 
     pending 'more spec for vcard'
   end
+
+  describe '#find_by_email' do
+    it "downcase email" do
+      user = users(:user01)
+      User.find_by_email(user.email.capitalize).should == User.find_by_email(user.email)
+    end
+  end
 end
