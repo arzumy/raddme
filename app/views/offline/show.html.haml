@@ -1,0 +1,16 @@
+CACHE MANIFEST
+CACHE:
+- if user_signed_in?
+  = "/#{current_user.friendly_id}"
+  = "/#{current_user.friendly_id}.html"
+= "/assets/#{Rails.application.assets.find_asset('application.css').digest_path}"
+= "/assets/#{Rails.application.assets.find_asset('application.js').digest_path}"
+= "/assets/bg.png"
+= "/assets/logo.png"
+
+NETWORK
+= "/"
+
+- if user_signed_in?
+  FALLBACK
+  = "/#{current_user.friendly_id} /#{current_user.friendly_id}.html"

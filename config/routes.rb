@@ -7,6 +7,7 @@ Radd::Application.routes.draw do
   match 'exchange/:token' => 'exchanges#show', as: :exchange
 
   match 'about' => 'home#about', as: :about
+  match 'application.manifest' => 'offline#show'
   root :to => "home#index"
 
   match '*id' => 'users#show', as: :public_user
