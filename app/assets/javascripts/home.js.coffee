@@ -13,9 +13,8 @@ sendDataToServer = ($form) ->
       $.post $form.attr('action'), localStorage.getItem(dataString), ->
         backOnlineFlash 0
         backOnlineFlash localStorage.length
-      localStorage.removeItem dataString
-    else
-      i++
+        localStorage.removeItem dataString
+    i++
 
 saveDataLocally = (serializedData) ->
   if typeof (localStorage) is "undefined"
@@ -29,7 +28,7 @@ saveDataLocally = (serializedData) ->
       showFlash($('#user_email').val()+' stored offline. We will exchange contact when back online')
       $('#user_email').val('')
     catch e
-      alert "We can't store more data"  if e is QUOTA_EXCEEDED_ERR
+      alert "We can't store more data"
 
 backOnlineFlash = (size) ->
   if size > 0
