@@ -23,12 +23,12 @@ saveDataLocally = (serializedData) ->
     newDate = new Date()
     itemId = newDate.getTime()
     try
-      localStorage.setItem itemId, serializedData
+      setStorageItem itemId, serializedData
       hideFlash()
       showFlash($('#user_email').val()+' stored offline. We will exchange contact when back online')
       $('#user_email').val('')
     catch e
-      alert "We can't store more data"
+      alert "We can't store more data" if e.name.toUpperCase() == 'QUOTA_EXCEEDED_ERR'
 
 backOnlineFlash = (size) ->
   if size > 0
@@ -42,6 +42,10 @@ showFlash = (message, flash='notice') ->
 
 hideFlash = ->
   $('div.alert-message').fadeOut()
+
+setStorageItem = (item, val) ->
+  localStorage.removeItem(item);
+  localStorage.setItem(item, val);
 
 $(document).ready ->
   $(window).bind "offline", ->
