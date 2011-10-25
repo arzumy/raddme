@@ -47,19 +47,30 @@ setStorageItem = (item, val) ->
   localStorage.removeItem(item);
   localStorage.setItem(item, val);
 
-$(document).ready ->
-  $(window).bind "offline", ->
+setStatusOffline = (status) ->
+  $form = $(".exchange > form")
+  $form.unbind()
+  if status
     $("#offline").slideDown()
-    $(".exchange > form").submit (e)->
+    $form.submit (e)->
       e.preventDefault()
       saveDataLocally($(this).serialize())
-
-  $(window).bind "online", ->
+  else
     $("#offline").slideUp()
-    $form = $(".exchange > form")
-    $form.unbind()
     if localStorage.length > 0
       sendDataToServer($form)
+
+$(document).ready ->
+  $(window).bind "offline", ->
+    setStatusOffline(true)
+
+  $(window).bind "online", ->
+    setStatusOffline(false)
+
+  if navigator.onLine
+    setStatusOffline(false)
+  else
+    setStatusOffline(true)
 
   $("a.close").live 'click', (e)->
     e.preventDefault()
