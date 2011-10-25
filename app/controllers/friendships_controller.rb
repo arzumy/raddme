@@ -7,10 +7,16 @@ class FriendshipsController < ApplicationController
     if @friend.registered?
       UserMailer.exchanged(@user, @friend).deliver
       UserMailer.exchanged(@friend, @user).deliver
-      redirect_to public_user_path(@user), notice: "You've successfully exchanged contact"
+      notice = "You've successfully exchanged contact"
     else
       UserMailer.exchanged_unregistered(@user, @friend).deliver
-      redirect_to public_user_path(@user), notice: "You've shared contact with #{@friend.email}. As soon as they login, you will receive their card"
+      notice = "You've shared contact with #{@friend.email}. As soon as they login, you will receive their card"
+    end
+
+    if request.xhr?
+      head :ok
+    else
+      redirect_to public_user_path(@user), notice: notice
     end
   end
 

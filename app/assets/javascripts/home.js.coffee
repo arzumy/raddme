@@ -4,10 +4,15 @@
 sendDataToServer = ($form) ->
   i = 0
   dataString = ''
-  while i <= localStorage.length - 1
+  size = localStorage.length
+
+  backOnlineFlash(size)
+  while i <= size - 1
     dataString = localStorage.key(i)
     if dataString
-      $.post $form.attr('action'), localStorage.getItem(dataString)
+      $.post $form.attr('action'), localStorage.getItem(dataString), ->
+        backOnlineFlash 0
+        backOnlineFlash localStorage.length
       localStorage.removeItem dataString
     else
       i++
@@ -22,6 +27,16 @@ saveDataLocally = (serializedData) ->
         localStorage.setItem itemId, serializedData
       catch e
         alert "We can't store more data"  if e is QUOTA_EXCEEDED_ERR
+
+backOnlineFlash = (size) ->
+  if size > 0
+    showFlash('Back online! Now sending '+size.toString()+' offline email addresses.')
+  else
+    $('div.alert-message').fadeOut()
+
+showFlash = (message, flash='notice') ->
+  $(".header a.logo").after ->
+      return '<div class="alert-message '+flash+'"><p>'+message+'</p></div>'
   
 $(document).ready ->
   $(window).bind "offline", ->
@@ -36,6 +51,6 @@ $(document).ready ->
     $form.unbind()
     if localStorage.length > 0
       sendDataToServer($form)
-  
+
   $("a.close").click ->
     $(this).parent().fadeOut()
