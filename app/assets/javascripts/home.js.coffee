@@ -24,33 +24,40 @@ saveDataLocally = (serializedData) ->
     newDate = new Date()
     itemId = newDate.getTime()
     try
-        localStorage.setItem itemId, serializedData
-      catch e
-        alert "We can't store more data"  if e is QUOTA_EXCEEDED_ERR
+      localStorage.setItem itemId, serializedData
+      hideFlash()
+      showFlash($('#user_email').val()+' stored offline. We will exchange contact when back online')
+      $('#user_email').val('')
+    catch e
+      alert "We can't store more data"  if e is QUOTA_EXCEEDED_ERR
 
 backOnlineFlash = (size) ->
   if size > 0
     showFlash('Back online! Now sending '+size.toString()+' offline email addresses.')
   else
-    $('div.alert-message').fadeOut()
+    hideFlash()
 
 showFlash = (message, flash='notice') ->
   $(".header a.logo").after ->
-      return '<div class="alert-message '+flash+'"><p>'+message+'</p></div>'
-  
+      return '<div class="alert-message '+flash+'"><a href="#" class="close">x</a><p>'+message+'</p></div>'
+
+hideFlash = ->
+  $('div.alert-message').fadeOut()
+
 $(document).ready ->
   $(window).bind "offline", ->
-    $("#offline").show()
+    $("#offline").slideDown()
     $(".exchange > form").submit (e)->
       e.preventDefault()
       saveDataLocally($(this).serialize())
 
   $(window).bind "online", ->
-    $("#offline").hide()
+    $("#offline").slideUp()
     $form = $(".exchange > form")
     $form.unbind()
     if localStorage.length > 0
       sendDataToServer($form)
 
-  $("a.close").click ->
-    $(this).parent().fadeOut()
+  $("a.close").live 'click', (e)->
+    e.preventDefault()
+    hideFlash()
