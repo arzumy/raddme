@@ -186,10 +186,21 @@ h1 {
 	color: #333333;
 }
 
+.avatar {
+  margin-top: -35px;
+}
+
+.avatar img {
+  padding: 0;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+
 .name {
 	text-transform: uppercase;
 	font-family: "Lucida Grande", "Verdana", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-	margin:  25px;
+	margin-top:  5px;
 	font-weight:  bolder;
 	font-size: 25px;
 	margin-bottom: 0px;

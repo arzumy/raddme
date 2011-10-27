@@ -22,11 +22,22 @@ describe OfflineController do
       response.body.should match(/#{Rails.application.assets.find_asset('application.js').digest_path}/)
     end
 
-    it "includes current user" do
-      user = users(:user01)
-      sign_in user
-      get :show
-      response.body.should match(/#{user.friendly_id}/)
+    context "user's logged in" do
+      let(:user) { users(:user01) }
+
+      before do
+        sign_in user
+      end
+
+      it "includes current user" do
+        get :show
+        response.body.should match(/#{user.friendly_id}/)
+      end
+
+      it "includes user's gravatar" do
+        get :show
+        response.body.should match(/gravatar\.com/)
+      end
     end
   end
 end

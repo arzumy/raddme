@@ -1,8 +1,10 @@
 CACHE MANIFEST
+= "# changelog: include gravatar change something"
 CACHE:
 - if user_signed_in?
   = "#{current_user.friendly_id}.html"
-  = "#{current_user.friendly_id}"
+  = current_user.friendly_id
+  = raw current_user.gravatar_url
 = "/assets/#{Rails.application.assets.find_asset('application.css').digest_path}"
 = "/assets/#{Rails.application.assets.find_asset('application.js').digest_path}"
 = "/assets/bg.png"

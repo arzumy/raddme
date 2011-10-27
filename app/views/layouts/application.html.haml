@@ -15,6 +15,7 @@
         %p OFFLINE MODE
       .header
         = link_to "radd.me", root_path, :class=> "logo"
+      = yield :avatar
       - %w[notice alert].each do |flasher|
         - if flash[flasher.to_sym]
           .alert-message{class: flasher}
