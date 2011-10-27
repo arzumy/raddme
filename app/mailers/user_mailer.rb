@@ -13,6 +13,6 @@ class UserMailer < ActionMailer::Base
     @user = user
     @friend = friend
     attachments["#{user.friendly_id}.vcf"] = user.vcard.to_s
-    mail(:to => friend.email, :subject => "Here's #{@user.fullname} details on Radd.me")
+    mail(to: friend.email, reply_to: user.email, subject: "Here's #{@user.fullname} details on Radd.me")
   end
 end

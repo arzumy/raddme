@@ -1,0 +1,10 @@
+= user.fullname unless user.is_company?
+- if user.title
+  = user.title
+- if user.organization
+  = user.organization
+= user.email
+- if user.phone_mobile
+  = user.phone_mobile
+= nil
+= raw user.custom_message

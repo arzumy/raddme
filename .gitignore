@@ -5,3 +5,4 @@ tmp/
 .idea/*
 config/database.yml
 spec/fixtures/*.yml
+spec/javascripts/fixtures/*

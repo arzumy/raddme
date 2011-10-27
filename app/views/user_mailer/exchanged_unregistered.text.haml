@@ -1,18 +1,9 @@
 Hi,
 = nil
-It was nice to meet you, aren't you happy we didn't exchange cards now you can search for my contacts so easily
+It was nice to meet you! Aren't you glad we didn't exchange cards - now you can search for my contact details easily.
 My details are as follows:
 = nil
-= @user.fullname unless @user.is_company?
-- if @user.title
-  = @user.title
-- if @user.organization
-  = @user.organization
-= @user.email
-- if @user.phone_mobile
-  = @user.phone_mobile
-= nil
-= raw @user.custom_message
+= render partial: "details", locals: {user: @user}
 = nil
 = "Return the favor by signing up at #{exchange_url(@friend.invite_token)}"
 = nil
