@@ -5,9 +5,8 @@ describe OfflineController do
 
   describe "GET show" do
     it "renders content-type properly" do
-      pending
       get :show
-      response.content_type.should == 'text/cache-manifest'
+      response.headers['Content-Type'].should == 'text/cache-manifest'
     end
 
     it "renders show template" do
