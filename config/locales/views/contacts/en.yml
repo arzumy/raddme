@@ -1,6 +1,7 @@
 en:
   contacts:
     index:
+      download: download all contacts
       exchanged_count:
         one: 1 exchanged
         other: '%{count} exchanged'

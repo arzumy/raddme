@@ -1,0 +1,3 @@
+= CSV.generate_line(%w(Email Name Title Organization Mobile Work Fax))
+- (@exchanged + @pending).sort_by { |u| u.email }.each do |user|
+  = CSV.generate_line([user.email, user.fullname, user.title, user.organization, user.phone_mobile, user.phone_work, user.phone_fax]).html_safe

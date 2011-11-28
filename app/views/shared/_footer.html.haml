@@ -1,7 +1,7 @@
 - if user_signed_in?
   .meta
     %p
-      = link_to 'exchange', public_user_path(current_user) unless @user
+      = link_to 'home', public_user_path(current_user) unless @user
       = link_to 'contacts', contacts_path unless controller_name == 'contacts'
       = link_to 'edit', edit_user_registration_path if @user == current_user
       = link_to 'logout', destroy_user_session_path, method: :delete

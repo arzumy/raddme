@@ -4,3 +4,6 @@
     = t '.exchanged_count', count: @exchanged_count
     %br
     = t '.pending_count', count: @pending_count
+
+.meta
+  = link_to t('.download'), contacts_path(format: :csv)
