@@ -4,6 +4,7 @@ Radd::Application.routes.draw do
   match 'users/edit' => 'registrations#edit', as: :user_root
   
   resources :friendships, only: [:create]
+  resources :contacts, only: [:index]
   match 'exchange/:token' => 'exchanges#show', as: :exchange
 
   match 'about' => 'home#about', as: :about

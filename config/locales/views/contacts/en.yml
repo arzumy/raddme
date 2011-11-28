@@ -1,0 +1,10 @@
+en:
+  contacts:
+    index:
+      exchanged_count:
+        one: 1 exchanged
+        other: '%{count} exchanged'
+      pending_count:
+        one: 1 pending
+        other: '%{count} pending'
+      title: My Contacts

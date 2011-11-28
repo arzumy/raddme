@@ -13,9 +13,11 @@ class User < ActiveRecord::Base
 
   before_validation :downcase_email
   after_create { |user| user.create_friendship }
+  scope :unregistered, where("invite_token IS NOT NULL")
+  scope :registered, where(invite_token: nil)
 
   def friends
-    User.where(:id => friend_ids)
+    User.where(id: friend_ids)
   end
 
   def friend_ids
